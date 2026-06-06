@@ -1,453 +1,179 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BottMill · Tu aserradero entero, en el bolsillo</title>
-<meta name="description" content="BottMill digitaliza tu aserradero: producción, máquinas, consumos y mantenimiento predictivo. Todo en chat en vivo. Hecho a medida. Llave en mano. Datos siempre en local."/>
-
-<meta property="og:site_name" content="BottMill · Bitt Ingeniería"/>
-<meta property="og:title" content="BottMill · Tu aserradero entero, en el bolsillo"/>
-<meta property="og:description" content="Digitaliza producción, máquinas, consumos y mantenimiento. Todo en chat en vivo. Hecho a medida por Bitt Ingeniería."/>
-<meta property="og:image" content="https://bittingenieria.github.io/bottmill/assets/og-preview.png"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="BottMill · digitalización integral de aserraderos"/>
-<meta property="og:url" content="https://bittingenieria.github.io/bottmill/"/>
+<title>BottMill · Tu aserradero, en tiempo real</title>
+<meta name="description" content="BottMill Platform: la producción de tu aserradero en tiempo real, en el navegador y en el móvil. Dashboard en vivo, objetivos del día, alertas, informes PDF y chat con IA. Por Bitt Ingeniería."/>
+<meta property="og:title" content="BottMill · Tu aserradero, en tiempo real"/>
+<meta property="og:description" content="Producción en tiempo real, objetivos, alertas, informes PDF y chat con IA. Plataforma web por Bitt Ingeniería."/>
+<meta property="og:image" content="assets/og-preview.png"/>
 <meta property="og:type" content="website"/>
-<meta property="og:locale" content="es_ES"/>
-
-<!-- Twitter / X card -->
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="BottMill · Tu aserradero entero, en el bolsillo"/>
-<meta name="twitter:description" content="Digitaliza producción, máquinas, consumos y mantenimiento. Todo en chat en vivo. Hecho a medida por Bitt Ingeniería."/>
-<meta name="twitter:image" content="https://bittingenieria.github.io/bottmill/assets/og-preview.png"/>
-
 <link rel="icon" type="image/png" href="assets/logo_bitt.png"/>
-
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --verde-1:#0f3d2a;
-  --verde-2:#1f6e3d;
-  --verde-3:#3aa856;
-  --verde-bg:#eaf4ec;
-  --verde-bg-2:#dceadf;
-  --acento:#f59e0b;
-  --acento-bg:#fef3c7;
-  --azul:#1e3a8a;
-  --azul-bg:#dbeafe;
-  --gris:#1f2724;
-  --gris-2:#5a635e;
-  --gris-3:#cfd8d1;
-  --gris-claro:#b8c0bc;
-  --verde-claro:#7dd58c;
-  --font-title:'Barlow Condensed',sans-serif;
-  --font-body:'Inter',system-ui,sans-serif;
-  --radius:12px;
-  --shadow:0 6px 28px rgba(15,61,42,.12);
-  --shadow-strong:0 18px 50px rgba(15,61,42,.25);
-  --transition:.3s ease;
+  --bg:#f8f8f8;--card:#fff;--dark:#2d2d2d;--green:#4caf68;--green-d:#3a9a55;--green-1:#2a7a44;
+  --green-l:#8fdba3;--soft:#eaf6ee;--soft2:#dcefe3;--ink:#1a1a1a;--muted:#555;--line:#e0e0e0;
+  --ft:'Barlow Condensed',sans-serif;--fb:'Inter',system-ui,sans-serif;
+  --radius:14px;--shadow:0 6px 26px rgba(0,0,0,.07);--shadow-s:0 16px 44px rgba(0,0,0,.14);--tr:.3s ease;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:#f7faf7;color:var(--gris);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
-
 .container{max-width:1180px;margin:0 auto;padding:0 22px}
-.section{padding:90px 0}
-.section-title{font-family:var(--font-title);font-size:clamp(2rem,4.5vw,2.8rem);font-weight:700;text-align:center;color:var(--verde-1);margin-bottom:14px;line-height:1.1;letter-spacing:.5px}
-.section-subtitle{color:var(--gris-2);text-align:center;max-width:720px;margin:0 auto 56px;font-size:1.05rem}
+.section{padding:84px 0}
+.section-title{font-family:var(--ft);font-size:clamp(2rem,4.5vw,2.9rem);font-weight:800;text-align:center;color:var(--ink);margin-bottom:14px;line-height:1.08;letter-spacing:.5px}
+.section-sub{color:var(--muted);text-align:center;max-width:720px;margin:0 auto 50px;font-size:1.05rem}
+.wm{font-family:var(--ft);font-weight:800;color:var(--ink);letter-spacing:1px;line-height:1}
+.wm .tt{color:var(--green)}
 
 /* HEADER */
-header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 1px 8px rgba(0,0,0,.05);z-index:100;padding:14px 0}
-.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
-.nav .logo{display:flex;align-items:center;gap:12px;justify-self:start}
-.nav .logo img{height:34px}
-.nav .brand{justify-self:center;display:flex;align-items:center}
-.nav .brand .wordmark{font-size:1.85rem}
-.nav .brand .brand-logo{display:block;height:42px;width:auto}
-.wordmark{font-family:var(--font-title);font-weight:800;font-size:1.7rem;color:var(--gris-claro);letter-spacing:1px;line-height:1}
-.wordmark .tt{color:var(--verde-claro)}
-.wordmark .mill{color:var(--verde-claro)}
-.nav .links{display:flex;gap:8px;align-items:center;justify-self:end}
-
-/* BOTONES */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:var(--radius);font-family:var(--font-body);font-weight:600;font-size:.98rem;cursor:pointer;transition:var(--transition);border:none;min-height:50px;text-align:center;line-height:1.2}
-.btn-primary{background:var(--verde-2);color:#fff;box-shadow:0 6px 16px rgba(31,110,61,.3)}
-.btn-primary:hover{background:var(--verde-1);transform:translateY(-2px);box-shadow:0 10px 24px rgba(31,110,61,.4)}
-.btn-outline{background:transparent;color:var(--verde-1);border:2px solid var(--verde-2)}
-.btn-outline:hover{background:var(--verde-2);color:#fff}
-.btn-ghost{background:transparent;color:var(--verde-1);padding:10px 14px;min-height:auto}
-.btn-ghost:hover{color:var(--verde-2)}
-.btn-whatsapp{background:#25d366;color:#fff;box-shadow:0 6px 16px rgba(37,211,102,.3)}
-.btn-whatsapp:hover{background:#1ebe57;transform:translateY(-2px)}
-.btn-small{padding:10px 18px;font-size:.9rem;min-height:42px}
+header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 1px 10px rgba(0,0,0,.05);z-index:100;padding:12px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav .left{display:flex;align-items:center;gap:13px}
+.nav .left img{height:32px}
+.nav .left .wm{font-size:1.7rem}
+.nav .links{display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:11px;font-weight:600;font-size:.96rem;cursor:pointer;transition:var(--tr);border:none;text-align:center}
+.btn-primary{background:var(--green);color:#fff;box-shadow:0 6px 16px rgba(76,175,104,.32)}
+.btn-primary:hover{background:var(--green-d);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--green-1);border:2px solid var(--green)}
+.btn-outline:hover{background:var(--green);color:#fff}
+.btn-light{background:#fff;color:var(--green-1)}.btn-light:hover{transform:translateY(-2px)}
+.btn-sm{padding:9px 16px;font-size:.9rem}
+.nav .links .btn-ghost{background:transparent;color:var(--ink);padding:9px 12px}
+.nav .links .btn-ghost:hover{color:var(--green-d)}
 
 /* HERO */
-.hero{position:relative;background:linear-gradient(155deg,var(--verde-1) 0%,var(--verde-2) 60%,var(--verde-3) 120%);color:#fff;padding:90px 0 110px;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-180px;right:-180px;width:520px;height:520px;border-radius:50%;background:rgba(255,255,255,.05)}
-.hero::after{content:"";position:absolute;bottom:-260px;left:-200px;width:600px;height:600px;border-radius:50%;background:rgba(245,158,11,.08)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;position:relative;z-index:2}
-.hero .wordmark{color:var(--gris-claro);font-size:3rem;margin-bottom:18px}
-.hero .wordmark .tt{color:var(--verde-claro)}
-.hero .wordmark .mill{color:var(--verde-claro)}
-.hero .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff;padding:7px 16px;border-radius:30px;font-weight:600;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px}
-.hero h1{font-family:var(--font-title);font-size:clamp(2.4rem,5vw,4.2rem);font-weight:800;line-height:1.02;margin-bottom:18px;letter-spacing:.5px}
-.hero .lead{font-size:1.18rem;color:#e5f5e8;margin-bottom:18px;max-width:560px;line-height:1.5}
-.hero .seal{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);padding:8px 14px;border-radius:20px;font-size:.86rem;color:#d8f0d8;margin-bottom:24px}
-.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.hero{position:relative;background:var(--dark);color:#fff;padding:82px 0 92px;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-160px;right:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(76,175,104,.30),transparent 70%)}
+.hero::after{content:"";position:absolute;bottom:-220px;left:-180px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(76,175,104,.12),transparent 70%)}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:46px;align-items:center;position:relative;z-index:2}
+.hero .wm{color:#fff;font-size:3rem;margin-bottom:14px}
+.badge{display:inline-block;background:rgba(76,175,104,.18);border:1px solid rgba(76,175,104,.5);color:var(--green-l);padding:7px 16px;border-radius:30px;font-weight:600;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:var(--ft);font-size:clamp(2.3rem,4.8vw,3.7rem);font-weight:800;line-height:1.03;margin-bottom:16px;letter-spacing:.5px}
+.hero h1 span{color:var(--green-l)}
+.hero .lead{font-size:1.16rem;color:#cdd2ce;margin-bottom:24px;max-width:540px;line-height:1.5}
+.hero .ctas{display:flex;gap:13px;flex-wrap:wrap}
+.hero-shot{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 70px rgba(0,0,0,.5)}
 
-/* TELEGRAM MOCKUPS */
-.tg-mock{
-  background:linear-gradient(135deg,#a5d4a8 0%,#c5e2c8 100%);
-  border-radius:24px;padding:16px;
-  font-family:-apple-system,'Segoe UI',Roboto,sans-serif;
-  box-shadow:0 20px 50px rgba(0,0,0,.3);
-  position:relative;overflow:hidden;
-}
-.tg-mock::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.15) 0,transparent 50%);pointer-events:none}
-.tg-h{background:#fff;border-radius:30px;padding:8px 16px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:.92rem;color:#222;margin-bottom:12px;position:relative;z-index:2}
-.tg-h .dot{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--verde-2),var(--verde-3));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem}
-.tg-h .sub{color:#888;font-size:.72rem;font-weight:400;display:block;line-height:1}
-.tg-m{background:#fff;border-radius:14px;padding:10px 14px;margin-bottom:8px;font-size:.85rem;line-height:1.4;color:#1a1a1a;position:relative;z-index:2;max-width:88%;box-shadow:0 1px 2px rgba(0,0,0,.08)}
-.tg-m.me{margin-left:auto;background:#dcf8c6}
-.tg-m .hh{font-weight:700;font-size:.92rem;margin-bottom:4px;color:var(--verde-1)}
-.tg-m .hh.alert{color:#b3261e}
-.tg-m .hh.ok{color:var(--verde-2)}
-.tg-m ul{padding:0;margin:4px 0 0;list-style:none}
-.tg-m ul li{font-size:.82rem;margin:2px 0;color:#222}
-.tg-m ul li::before{content:"• ";color:var(--verde-2);font-weight:700}
-.tg-m .time{display:block;text-align:right;font-size:.7rem;color:#7a8a7d;margin-top:5px}
-.tg-m.me .time{color:#5a7}
+/* TRUST */
+.trust{background:#fff;padding:24px 0;border-bottom:1px solid var(--line)}
+.trust-in{display:flex;justify-content:center;gap:46px;flex-wrap:wrap}
+.trust-it{font-size:.92rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+.trust-it strong{color:var(--green-1);font-family:var(--ft);font-size:1.06rem;letter-spacing:.5px}
 
-/* TRUST BAR */
-.trust{background:#fff;padding:28px 0;border-bottom:1px solid var(--verde-bg-2)}
-.trust-inner{display:flex;justify-content:center;gap:54px;flex-wrap:wrap;text-align:center}
-.trust-item{font-size:.92rem;color:var(--gris-2);display:flex;align-items:center;gap:8px}
-.trust-item strong{color:var(--verde-1);font-family:var(--font-title);font-size:1.05rem;letter-spacing:.5px}
-
-/* DOLORES */
-.dolores{background:#fff}
-.dolores-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:920px;margin:0 auto}
-.dolor-card{background:#fff;border:1px solid var(--verde-bg-2);border-radius:var(--radius);padding:22px 22px 22px 64px;position:relative;transition:var(--transition)}
-.dolor-card:hover{border-color:var(--verde-3);transform:translateY(-3px);box-shadow:var(--shadow)}
-.dolor-card::before{content:"!";position:absolute;left:18px;top:20px;width:32px;height:32px;background:#fde3dd;color:#b3261e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem}
-.dolor-card h4{font-family:var(--font-body);font-size:1rem;color:var(--verde-1);margin-bottom:4px;font-weight:700}
-.dolor-card p{font-size:.92rem;color:var(--gris-2);margin:0}
+/* PROBLEMA / SOLUCION */
+.ba{background:#fff}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:980px;margin:0 auto}
+.ba-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--bg)}
+.ba-card .h{padding:16px 22px;font-family:var(--ft);font-weight:800;font-size:1.3rem;letter-spacing:.5px;color:#fff}
+.ba-card.before .h{background:#8a8a8a}
+.ba-card.after .h{background:var(--green)}
+.ba-card ul{list-style:none;padding:18px 22px}
+.ba-card li{font-size:.96rem;color:var(--ink);padding-left:28px;position:relative;margin:12px 0;line-height:1.4}
+.ba-card.before li::before{content:"✕";position:absolute;left:0;color:#b0b0b0;font-weight:700;font-size:1rem}
+.ba-card.after li::before{content:"✓";position:absolute;left:0;color:var(--green-d);font-weight:700;font-size:1rem}
 
 /* FEATURES */
-.features{background:linear-gradient(180deg,#f7faf7 0%,#eaf4ec 100%)}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.feat{background:#fff;border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);transition:var(--transition);border-top:4px solid var(--verde-3)}
-.feat.acento{border-top-color:var(--acento)}
-.feat:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
-.feat .ico{width:54px;height:54px;background:var(--verde-bg);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:16px}
-.feat.acento .ico{background:var(--acento-bg)}
-.feat h3{font-family:var(--font-body);font-size:1.08rem;color:var(--verde-1);margin-bottom:8px;font-weight:700}
-.feat p{font-size:.94rem;color:var(--gris-2);margin:0}
-.feat .ast{font-size:.78rem;font-style:italic;color:var(--gris-2);margin-top:8px;display:block}
+.features{background:linear-gradient(180deg,var(--bg),var(--soft))}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat{background:#fff;border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow);transition:var(--tr);border-top:4px solid var(--green)}
+.feat:hover{transform:translateY(-4px);box-shadow:var(--shadow-s)}
+.feat .ic{width:50px;height:50px;background:var(--soft);border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.feat .ic svg{width:26px;height:26px;stroke:var(--green-d);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat h3{font-size:1.06rem;color:var(--green-1);margin-bottom:6px;font-weight:700}
+.feat p{font-size:.92rem;color:var(--muted)}
 
-/* MOCKUPS GALERÍA */
-.mocks{background:#fff}
-.mocks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.mock-wrap{display:flex;flex-direction:column;gap:12px}
-.mock-wrap .label{font-weight:700;color:var(--verde-1);font-size:.92rem;text-align:center}
-.mock-wrap .label small{display:block;color:var(--gris-2);font-weight:400;margin-top:2px;font-size:.78rem}
+/* GALERIA */
+.shots{background:#fff}
+.shots-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.shot-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:var(--tr);background:#fff}
+.shot-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-s)}
+.shot-card img{width:100%;border-bottom:1px solid var(--line)}
+.shot-card .cap{padding:14px 18px}
+.shot-card .cap h4{font-size:1rem;color:var(--green-1);font-weight:700;margin-bottom:2px}
+.shot-card .cap p{font-size:.88rem;color:var(--muted)}
+.shot-card.wide{grid-column:1/-1}
+.shots-sub{margin:42px 0 22px;text-align:center;font-family:var(--ft);font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:.5px}
 
-/* INFORMES AUTOMÁTICOS */
-.informes{background:linear-gradient(180deg,#f7faf7 0%,#eaf4ec 100%)}
-.informes-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1000px;margin:0 auto}
-.informe-card{background:#fff;border-radius:18px;padding:32px;box-shadow:var(--shadow);border-top:5px solid var(--verde-3);transition:var(--transition);display:flex;flex-direction:column}
-.informe-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
-.informe-card.mensual{border-top-color:var(--acento)}
-.informe-card .ic{font-size:2.4rem;margin-bottom:6px}
-.informe-card .freq{display:inline-block;background:var(--verde-bg);color:var(--verde-1);padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px;align-self:flex-start}
-.informe-card.mensual .freq{background:var(--acento-bg);color:#a86d05}
-.informe-card h3{font-family:var(--font-title);font-size:1.7rem;color:var(--verde-1);margin-bottom:10px;line-height:1}
-.informe-card p{color:var(--gris-2);font-size:.95rem;margin-bottom:14px;line-height:1.5}
-.informe-card ul{list-style:none;padding:0;margin:0 0 18px;flex:1}
-.informe-card ul li{position:relative;padding-left:22px;font-size:.9rem;color:var(--gris);margin-bottom:6px;line-height:1.4}
-.informe-card ul li::before{content:"✓";position:absolute;left:0;top:0;color:var(--verde-2);font-weight:700}
-.informe-card .delivery{display:flex;gap:10px;padding-top:14px;border-top:1px solid var(--verde-bg-2)}
-.informe-card .delivery span{background:var(--verde-1);color:#fff;padding:6px 14px;border-radius:30px;font-size:.82rem;font-weight:600}
-.informe-card.mensual .delivery span:first-child{background:var(--verde-1)}
-.informe-card.mensual .delivery span:last-child{background:var(--acento);color:#fff}
-.informes-foot{text-align:center;color:var(--gris-2);font-size:.95rem;margin-top:32px;max-width:680px;margin-left:auto;margin-right:auto}
-.informes-foot code{background:var(--verde-1);color:#fff;padding:3px 10px;border-radius:6px;font-family:inherit;font-weight:600}
+/* COMO FUNCIONA */
+.how{background:linear-gradient(180deg,var(--soft),var(--bg))}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1000px;margin:0 auto}
+.step{background:#fff;border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow);text-align:center}
+.step .n{width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;font-family:var(--ft);font-weight:800;font-size:1.5rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step h4{font-size:1.1rem;color:var(--green-1);margin-bottom:8px;font-weight:700}
+.step p{font-size:.94rem;color:var(--muted)}
 
-/* Previews dentro de cada informe-card */
-.preview{margin:-8px 0 18px;border-radius:12px;overflow:hidden;position:relative}
-.preview-chat{background:linear-gradient(135deg,#a5d4a8 0%,#c5e2c8 100%);padding:14px 12px;font-family:-apple-system,'Segoe UI',Roboto,sans-serif}
-.preview-chat .pc-head{background:#fff;border-radius:24px;padding:5px 12px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:.78rem;color:#222;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
-.preview-chat .pc-head .dot{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--verde-2),var(--verde-3));color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
-.preview-chat .pc-head small{display:block;color:#888;font-size:.62rem;font-weight:400;line-height:1}
-.preview-chat .msg{background:#fff;border-radius:12px;padding:10px 12px;font-size:.76rem;line-height:1.45;color:#1a1a1a;box-shadow:0 1px 2px rgba(0,0,0,.08);max-width:96%}
-.preview-chat .msg .hh{font-weight:700;font-size:.82rem;margin-bottom:5px;color:var(--verde-1);display:flex;align-items:center;gap:5px}
-.preview-chat .msg ul{list-style:none;padding:0;margin:0}
-.preview-chat .msg ul li{position:relative;padding-left:0;font-size:.74rem;color:#222;margin:1px 0;line-height:1.4}
-.preview-chat .msg ul li::before{content:""}
-.preview-chat .msg b{color:var(--verde-1)}
-.preview-chat .msg .vs{display:inline-block;background:var(--verde-bg);color:var(--verde-2);padding:1px 6px;border-radius:6px;font-size:.66rem;font-weight:700;margin-left:4px}
-.preview-chat .msg .vs.dn{background:#fde3dd;color:#b3261e}
-.preview-chat .time{display:block;text-align:right;font-size:.6rem;color:#7a8a7d;margin-top:5px}
+/* PLANES */
+.plans{background:#fff}
+.plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:820px;margin:0 auto 22px;align-items:stretch}
+.plan{border:1px solid var(--line);border-radius:18px;padding:30px 26px;display:flex;flex-direction:column;background:var(--bg);transition:var(--tr)}
+.plan:hover{transform:translateY(-4px);box-shadow:var(--shadow-s)}
+.plan.pop{border:2px solid var(--green);box-shadow:var(--shadow-s);position:relative;background:#fff}
+.plan.pop::before{content:"Recomendado";position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px}
+.plan .nm{font-family:var(--ft);font-weight:800;font-size:1.8rem;color:var(--ink);letter-spacing:.5px}
+.plan .pr{color:var(--green-d);font-size:1rem;font-weight:700;margin:2px 0 16px}
+.plan ul{list-style:none;flex:1;margin-bottom:20px}
+.plan li{font-size:.92rem;color:var(--ink);padding-left:24px;position:relative;margin:9px 0;line-height:1.4}
+.plan li::before{content:"✓";position:absolute;left:0;color:var(--green-d);font-weight:700}
+.plan li.no{color:#9aa29c}
+.plan li.no::before{content:"✕";color:#c2c8c3}
+.activo{max-width:820px;margin:0 auto;background:var(--dark);color:#fff;border-radius:18px;padding:30px 34px;position:relative;overflow:hidden}
+.activo::after{content:"";position:absolute;right:-80px;bottom:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(76,175,104,.25),transparent 70%)}
+.activo .ah{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;position:relative;z-index:2;border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:14px;margin-bottom:14px}
+.activo .ah .nm{font-family:var(--ft);font-weight:800;font-size:1.7rem;letter-spacing:.5px}
+.activo .ah .nm span{color:var(--green-l)}
+.activo .ah .pr{font-family:var(--ft);font-weight:800;font-size:2.2rem}
+.activo .ah .pr small{font-size:.9rem;color:#b9c2bb;font-weight:500;font-family:var(--fb)}
+.activo .desc{position:relative;z-index:2;color:#c7cdc8;font-size:.92rem;margin-bottom:14px}
+.activo .ag{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px 18px}
+.activo .ag span{font-size:.9rem;color:#e7ece8;padding-left:22px;position:relative}
+.activo .ag span::before{content:"✓";position:absolute;left:0;color:var(--green-l);font-weight:700}
+.plan-note{text-align:center;color:var(--muted);font-size:.86rem;margin-top:16px;font-style:italic}
 
-.preview-pdf{background:#eef2ee;padding:14px;display:flex;justify-content:center}
-.preview-pdf .sheet{background:#fff;width:100%;max-width:260px;aspect-ratio:210/297;box-shadow:0 4px 14px rgba(0,0,0,.15);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;font-size:.55rem;line-height:1.25;color:#222}
-.preview-pdf .ph{background:var(--verde-3);position:relative;padding:8px 10px 6px;color:#1a1a1a}
-.preview-pdf .ph::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--verde-1)}
-.preview-pdf .ph .ttl{font-size:.7rem;font-weight:800;letter-spacing:.2px}
-.preview-pdf .ph .per{font-size:.6rem;margin-top:1px}
-.preview-pdf .ph .cli{font-size:.52rem;color:#37461e;margin-top:1px}
-.preview-pdf .ph .lg{position:absolute;top:6px;right:8px;background:#fff;width:22px;height:22px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.5rem;font-weight:800;color:var(--verde-1)}
-.preview-pdf .pbody{padding:8px 9px;flex:1;display:flex;flex-direction:column;gap:6px}
-.preview-pdf .kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
-.preview-pdf .kpi{background:var(--verde-bg);border-left:2px solid var(--verde-3);padding:4px 4px 3px;border-radius:2px}
-.preview-pdf .kpi .l{font-size:.42rem;color:var(--verde-1);font-weight:700;text-transform:uppercase;letter-spacing:.2px}
-.preview-pdf .kpi .v{font-size:.62rem;font-weight:800;color:#1a1a1a;line-height:1}
-.preview-pdf .kpi .u{font-size:.42rem;color:#888}
-.preview-pdf .ststit{font-size:.56rem;font-weight:700;color:var(--verde-1);border-bottom:.5px solid var(--verde-3);padding-bottom:2px}
-.preview-pdf .chart{height:34px;background:linear-gradient(180deg,#fff,#f4f7f4);border-radius:2px;display:flex;align-items:flex-end;gap:2px;padding:3px}
-.preview-pdf .chart i{flex:1;background:var(--verde-2);border-radius:1px 1px 0 0;display:block}
-.preview-pdf .conc{background:var(--verde-bg);border-left:2px solid var(--verde-3);padding:4px 5px;font-size:.5rem;color:#1a1a1a;border-radius:2px}
-.preview-pdf .conc b{color:var(--verde-1)}
-.preview-pdf .pftr{font-size:.42rem;color:#888;border-top:.5px solid #ddd;padding:3px 9px;display:flex;justify-content:space-between}
-
-/* FASES (timeline) */
-.fases{background:linear-gradient(180deg,#eaf4ec 0%,#f7faf7 100%)}
-.fases-list{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
-.fase{background:#fff;border-radius:var(--radius);padding:22px 24px 22px 80px;position:relative;box-shadow:var(--shadow);transition:var(--transition)}
-.fase:hover{transform:translateX(6px);border-left:4px solid var(--verde-3)}
-.fase .n{position:absolute;left:20px;top:22px;width:44px;height:44px;border-radius:50%;background:var(--verde-2);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-title);font-weight:800;font-size:1.4rem}
-.fase h4{font-size:1.05rem;color:var(--verde-1);margin-bottom:4px;font-weight:700}
-.fase p{font-size:.94rem;color:var(--gris-2);margin:0}
-
-/* SEGURIDAD */
-.security{background:var(--verde-1);color:#fff;position:relative;overflow:hidden}
-.security::before{content:"";position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:rgba(58,168,86,.08)}
-.security .section-title{color:#fff}
-.security .section-subtitle{color:#bfd9c5}
-.security-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative;z-index:2}
-.sec-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:24px;backdrop-filter:blur(6px);transition:var(--transition)}
-.sec-card:hover{background:rgba(255,255,255,.1);transform:translateY(-3px)}
-.sec-card .ico{font-size:1.8rem;margin-bottom:12px}
-.sec-card h4{font-family:var(--font-body);font-size:1.04rem;color:#fff;margin-bottom:6px;font-weight:700}
-.sec-card p{font-size:.9rem;color:#d4e8d8;margin:0;line-height:1.5}
-.security .note{margin-top:36px;text-align:center;font-size:.95rem;color:#bfd9c5;max-width:780px;margin-left:auto;margin-right:auto;font-style:italic;line-height:1.6}
-
-/* ROLES */
-.roles{background:#fff}
-.roles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.role{background:var(--verde-bg);border-radius:var(--radius);padding:24px;border-top:4px solid var(--verde-3);transition:var(--transition)}
-.role:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.role .ic{font-size:2rem;margin-bottom:10px}
-.role h4{font-family:var(--font-body);font-size:1rem;color:var(--verde-1);margin-bottom:8px;font-weight:700}
-.role ul{padding-left:18px;margin:0}
-.role ul li{font-size:.86rem;color:var(--gris);margin-bottom:5px;line-height:1.4}
-
-/* FASES TABLA */
-.tabla-fases{background:linear-gradient(180deg,#f7faf7 0%,#eaf4ec 100%)}
-.tabla-wrap{max-width:920px;margin:0 auto;background:#fff;border-radius:var(--radius);padding:6px;box-shadow:var(--shadow);overflow:hidden}
-table.fases-tabla{width:100%;border-collapse:collapse;font-size:.95rem}
-table.fases-tabla th{background:var(--verde-1);color:#fff;padding:16px 18px;text-align:left;font-weight:700;font-family:var(--font-title);letter-spacing:.5px;font-size:1.05rem}
-table.fases-tabla td{padding:12px 18px;border-bottom:1px solid var(--verde-bg-2);color:var(--gris)}
-table.fases-tabla tr:last-child td{border-bottom:none}
-table.fases-tabla td:first-child{border-right:1px solid var(--verde-bg-2)}
-
-/* FAQ */
-.faq{background:linear-gradient(180deg,#eaf4ec 0%,#f7faf7 100%)}
-.faq-list{max-width:820px;margin:0 auto}
-.faq-item{background:#fff;border:1px solid var(--verde-bg-2);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;transition:var(--transition)}
-.faq-item:hover{border-color:var(--verde-3)}
-.faq-item summary{cursor:pointer;padding:18px 24px;font-weight:600;color:var(--verde-1);font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary::after{content:"+";font-size:1.6rem;color:var(--verde-3);transition:transform .3s ease;font-weight:300}
-.faq-item[open] summary::after{transform:rotate(45deg)}
-.faq-item .answer{padding:0 24px 22px;color:var(--gris-2);font-size:.96rem;line-height:1.6}
-
-/* CTA FINAL */
-.cta-final{background:linear-gradient(135deg,var(--verde-1),var(--verde-2));color:#fff;text-align:center;padding:80px 0}
-.cta-final h2{font-family:var(--font-title);font-size:clamp(2rem,4.5vw,3rem);color:#fff;margin-bottom:14px;line-height:1.1}
-.cta-final p{font-size:1.15rem;color:#d8f0d8;max-width:640px;margin:0 auto 36px}
-.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.cta-final .btn-primary{background:#fff;color:var(--verde-1)}
-.cta-final .btn-primary:hover{background:var(--acento);color:#fff}
-.cta-final .btn-outline{border-color:#fff;color:#fff}
-.cta-final .btn-outline:hover{background:#fff;color:var(--verde-1)}
-
-/* CONTACTO BLOCK */
-.contacto{background:#fff;padding:60px 0}
-.contacto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:920px;margin:0 auto;text-align:center}
-.contacto-card{background:var(--verde-bg);border-radius:var(--radius);padding:28px 22px;transition:var(--transition)}
-.contacto-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.contacto-card .ico{font-size:2rem;margin-bottom:10px}
-.contacto-card .lbl{font-size:.78rem;text-transform:uppercase;color:var(--gris-2);letter-spacing:.5px;margin-bottom:6px;font-weight:600}
-.contacto-card a{font-family:var(--font-title);font-size:1.3rem;color:var(--verde-1);font-weight:700;letter-spacing:.3px}
-.contacto-card a:hover{color:var(--verde-2)}
+/* CTA + FORM */
+.cta{background:linear-gradient(135deg,var(--dark),#242424);color:#fff;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;right:-160px;bottom:-160px;width:520px;height:520px;background:radial-gradient(circle,rgba(76,175,104,.22),transparent 70%)}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;position:relative;z-index:2}
+.cta h2{font-family:var(--ft);font-size:clamp(2rem,4.5vw,2.9rem);color:#fff;line-height:1.05;margin-bottom:14px}
+.cta h2 span{color:var(--green-l)}
+.cta p{color:#c7cdc8;font-size:1.08rem;margin-bottom:22px;max-width:460px}
+.cta .data{display:flex;flex-direction:column;gap:10px;font-size:1rem;color:#dfe5e0}
+.cta .data a{color:var(--green-l);font-weight:600}
+form{background:#fff;border-radius:18px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+form label{display:block;font-size:.84rem;font-weight:600;color:var(--ink);margin:0 0 5px}
+form input,form textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:inherit;font-size:.95rem;margin-bottom:14px;color:var(--ink);background:#fbfdfb;transition:var(--tr)}
+form input:focus,form textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(76,175,104,.15)}
+form textarea{resize:vertical;min-height:96px}
+form .btn-primary{width:100%}
 
 /* FOOTER */
-footer{background:var(--verde-1);color:#bfd9c5;padding:36px 0;text-align:center;font-size:.88rem}
-footer .foot-logo{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:14px}
-footer .foot-logo img{height:34px;filter:brightness(0) invert(1);opacity:.9}
-footer a{color:#d8f0d8}
+footer{background:var(--dark);color:#b9c2bb;padding:38px 0;text-align:center;font-size:.9rem}
+footer .fl{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:12px}
+footer .fl img{height:32px;filter:brightness(0) invert(1);opacity:.9}
+footer .fl .wm{font-size:1.5rem;color:#fff}
+footer a{color:var(--green-l)}
 footer a:hover{color:#fff}
-
-/* Smoother fade-in con cubic-bezier */
-.fade-in{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-
-/* Stagger de hijos: cards entran en cadena */
-.stagger > *{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
-.stagger.visible > *{opacity:1;transform:translateY(0)}
-.stagger.visible > *:nth-child(1){transition-delay:.04s}
-.stagger.visible > *:nth-child(2){transition-delay:.12s}
-.stagger.visible > *:nth-child(3){transition-delay:.20s}
-.stagger.visible > *:nth-child(4){transition-delay:.28s}
-.stagger.visible > *:nth-child(5){transition-delay:.36s}
-.stagger.visible > *:nth-child(6){transition-delay:.44s}
-.stagger.visible > *:nth-child(7){transition-delay:.52s}
-.stagger.visible > *:nth-child(8){transition-delay:.60s}
-
-/* Pulse sutil en CTA primarias */
-@keyframes ctaPulse{0%,100%{box-shadow:0 6px 18px rgba(31,110,61,.30)}50%{box-shadow:0 8px 28px rgba(58,168,86,.55)}}
-.hero .btn-primary,.cta-final .btn-primary{animation:ctaPulse 2.6s ease-in-out infinite}
-.cta-final .btn-primary{animation:ctaPulse 2.6s ease-in-out infinite,bgPulse 2.6s ease-in-out infinite}
-@keyframes bgPulse{0%,100%{background:#fff;color:var(--verde-1)}50%{background:var(--acento);color:#fff}}
-
-/* Indicador "typing" reutilizable */
-@keyframes typingBounce{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-3px);opacity:1}}
-.typing-dots{display:inline-flex;gap:4px;padding:8px 0;align-items:center}
-.typing-dots span{width:6px;height:6px;background:var(--verde-2);border-radius:50%;animation:typingBounce 1.4s infinite ease-in-out}
-.typing-dots span:nth-child(2){animation-delay:.18s}
-.typing-dots span:nth-child(3){animation-delay:.36s}
-
-/* Hover/tap lift más smooth */
-.feat,.role,.sec-card,.dolor-card,.fase,.informe-card,.contacto-card,.shot{will-change:transform}
-
-/* Anti-flicker en imágenes que entran */
-img{backface-visibility:hidden}
-
-/* Sticky CTA flotante (solo mobile) */
-.mobile-cta{display:none}
+footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
 
 @media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;text-align:center}
-  .hero .lead{margin-left:auto;margin-right:auto}
-  .hero .ctas{justify-content:center}
-  .features-grid,.mocks-grid,.security-grid,.roles-grid,.informes-grid{grid-template-columns:repeat(2,1fr)}
-  .nav .links .btn-outline{display:none}
+  .hero-grid,.cta-grid{grid-template-columns:1fr;text-align:center}
+  .hero .lead{margin-left:auto;margin-right:auto}.hero .ctas{justify-content:center}
+  .fgrid,.steps{grid-template-columns:repeat(2,1fr)}
+  .activo .ag{grid-template-columns:1fr 1fr}
+  .cta .data{align-items:center}
+  .nav .links .btn-ghost{display:none}
 }
 @media(max-width:600px){
-  .container{padding:0 18px}
-  .section{padding:58px 0}
-
-  /* HEADER mobile: logo izq + BottMill der, sin links (los reemplaza la sticky CTA) */
-  .nav{grid-template-columns:auto 1fr;gap:12px}
-  .nav .logo{justify-self:start}
-  .nav .brand{justify-self:end}
-  .nav .brand .wordmark{font-size:1.55rem}
-  .nav .brand .brand-logo{height:34px}
-  .nav .logo img{height:30px}
-  .nav .links{display:none}
-
-  .section-title{font-size:1.7rem;line-height:1.15}
-  .section-subtitle{margin-bottom:38px;font-size:.98rem;max-width:none}
-
-  /* HERO mobile compacto */
-  .hero{padding:48px 0 60px}
-  .hero .wordmark{font-size:2.3rem;margin-bottom:6px}
-  .hero h1{font-size:clamp(1.95rem,8.5vw,2.6rem);letter-spacing:0;line-height:1.05;margin-bottom:16px}
-  .hero .lead{font-size:1rem;margin-bottom:18px;max-width:none}
-  .hero .badge{font-size:.7rem;letter-spacing:.6px;padding:5px 12px;margin-bottom:14px}
-  .hero .seal{font-size:.78rem;padding:6px 12px;margin-bottom:24px;display:inline-block}
-  .hero .ctas{flex-direction:column;align-items:stretch;gap:10px}
-  .hero .ctas .btn{width:100%}
-  .tg-mock{margin:26px auto 0;max-width:340px}
-
-  /* DOLORES / FEATURES / SECCIONES en 1 col */
-  .dolores-grid,.features-grid,.mocks-grid,.security-grid,.roles-grid,.contacto-grid,.informes-grid,.fases-grid{grid-template-columns:1fr}
-  .wordmark{font-size:1.3rem}
-  .trust-inner{gap:18px}
-
-  .dolor-card{padding:18px 18px 18px 56px}
-  .dolor-card::before{left:14px;top:18px;width:28px;height:28px;font-size:.95rem}
-  .feat{padding:24px 20px}
-
-  /* MOCKUPS chat: mantener tamaño cómodo, no apretar */
-  .mocks-grid{gap:20px}
-
-  /* INFORMES: previews siempre visibles */
-  .informe-card{padding:24px 20px}
-  .informe-card h3{font-size:1.5rem}
-
-  /* FASES timeline */
-  .fase{padding:22px 18px 22px 64px}
-  .fase .num{left:14px}
-
-  /* ROLES */
-  .role{padding:22px 18px}
-
-  /* TABLA fases */
-  table.fases-tabla{font-size:.86rem}
-  table.fases-tabla th{padding:12px 10px;font-size:.95rem}
-  table.fases-tabla td{padding:10px 10px}
-
-  /* SECURITY */
-  .sec-card{padding:22px 18px}
-
-  /* FAQ */
-  .faq-item summary{padding:16px 18px;font-size:.96rem;gap:10px}
-  .faq-item .answer{padding:0 18px 18px;font-size:.92rem}
-
-  /* CTA FINAL apilado */
-  .cta-final{padding:56px 0}
-  .cta-final h2{font-size:1.7rem;line-height:1.15}
-  .cta-final p{font-size:1rem;margin-bottom:26px}
-  .cta-buttons{flex-direction:column;align-items:stretch;gap:10px}
-  .cta-buttons .btn{width:100%}
-
-  /* CONTACTO + FOOTER */
-  .contacto{padding:48px 0}
-  .contacto-card{padding:22px 18px}
-  .contacto-card a{font-size:1.15rem}
-  footer{padding:30px 0 88px;font-size:.82rem}  /* padding-bottom extra para la sticky CTA */
-  footer .foot-logo{flex-direction:column;gap:8px}
-
-  /* STICKY CTA mobile — sólo desde la sección FAQ en adelante (clase .show la activa el JS) */
-  .mobile-cta{
-    display:flex;position:fixed;bottom:0;left:0;right:0;z-index:90;
-    background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
-    border-top:1px solid var(--verde-bg-2);padding:10px 14px env(safe-area-inset-bottom,10px);
-    gap:10px;box-shadow:0 -6px 24px rgba(0,0,0,.10);
-    transform:translateY(110%);
-    transition:transform .4s cubic-bezier(.16,1,.3,1)
-  }
-  .mobile-cta.show{transform:translateY(0)}
-  .mobile-cta a{
-    flex:1;padding:13px 8px;border-radius:10px;font-weight:700;font-size:.94rem;
-    text-align:center;display:flex;align-items:center;justify-content:center;gap:7px;
-    min-height:46px;letter-spacing:.2px;
-    transition:transform .15s ease,box-shadow .2s ease
-  }
-  .mobile-cta a:active{transform:scale(.97)}
-  .mobile-cta .call{background:var(--verde-2);color:#fff;box-shadow:0 4px 14px rgba(31,110,61,.32)}
-  .mobile-cta .wa{background:#25d366;color:#fff;box-shadow:0 4px 14px rgba(37,211,102,.32)}
-}
-
-@media(max-width:380px){
-  .hero h1{font-size:1.82rem}
-  .hero .wordmark{font-size:2rem}
-  .section-title{font-size:1.5rem}
-  .nav .brand .wordmark{font-size:1.4rem}
-  .informe-card h3{font-size:1.35rem}
-}
-
-/* Respetar preferencia de reducir movimiento */
-@media (prefers-reduced-motion:reduce){
-  .fade-in,.stagger > *{transition:none !important;transform:none !important;opacity:1 !important}
-  .hero .btn-primary,.cta-final .btn-primary,.typing-dots span{animation:none !important}
+  .section{padding:54px 0}.container{padding:0 18px}
+  .fgrid,.shots-grid,.steps,.plans-grid,.ba-grid,.activo .ag{grid-template-columns:1fr}
+  .hero{padding:50px 0 60px}.hero .wm{font-size:2.3rem}
+  .nav .left .wm{font-size:1.45rem}.nav .links{gap:6px}
+  .trust-in{gap:16px}
 }
 </style>
 </head>
@@ -456,15 +182,14 @@ img{backface-visibility:hidden}
 <!-- HEADER -->
 <header>
   <div class="container nav">
-    <div class="logo">
+    <div class="left">
       <img src="assets/logo_bitt.png" alt="Bitt Ingeniería"/>
-    </div>
-    <div class="brand">
-      <img src="assets/logo_bottmill.png" alt="BottMill" class="brand-logo"/>
+      <span class="wm">Bo<span class="tt">tt</span>Mill</span>
     </div>
     <div class="links">
-      <a href="#fases" class="btn btn-ghost btn-small">Cómo funciona</a>
-      <a href="#cta" class="btn btn-outline btn-small">Visita técnica</a>
+      <a href="#features" class="btn btn-ghost btn-sm">Funcionalidades</a>
+      <a href="#planes" class="btn btn-ghost btn-sm">Planes</a>
+      <a href="#demo" class="btn btn-primary btn-sm">Solicitar demo</a>
     </div>
   </div>
 </header>
@@ -473,487 +198,206 @@ img{backface-visibility:hidden}
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <span class="badge">Para aserraderos</span>
-      <div class="wordmark">Bo<span class="tt">tt</span>Mill</div>
-      <h1>Tu aserradero entero,<br/>en el bolsillo.</h1>
-      <p class="lead">Digitaliza producción, máquinas, consumos y mantenimiento. Todo accesible desde el chat en vivo, en tiempo real, desde cualquier lugar.</p>
-      <span class="seal">🎯 A medida · 📦 Llave en mano · 🔒 Datos siempre en local</span>
+      <span class="badge">Plataforma para aserraderos</span>
+      <div class="wm">Bo<span class="tt">tt</span>Mill</div>
+      <h1>Tu aserradero,<br/><span>en tiempo real.</span></h1>
+      <p class="lead">BottMill digitaliza tu producción desde el primer día. Dashboard en vivo, objetivos, alertas automáticas, informes PDF y chat con IA — en el navegador y en el móvil.</p>
       <div class="ctas">
-        <a href="#cta" class="btn btn-primary">Solicitar visita técnica</a>
-        <a href="https://wa.me/34607306219?text=Hola%2C%20me%20interesa%20BotMill%20para%20mi%20aserradero." target="_blank" rel="noopener" class="btn btn-whatsapp">📱 WhatsApp</a>
+        <a href="#capturas" class="btn btn-light">Ver demo</a>
+        <a href="#demo" class="btn btn-primary">Contactar</a>
       </div>
     </div>
-    <div>
-      <div class="tg-mock">
-        <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
-        <div class="tg-m me">Producción línea 2 hoy<span class="time">15:21 ✓✓</span></div>
-        <div class="tg-m">
-          <div class="hh">🪚 Línea 2 — Hoy</div>
-          <ul>
-            <li>Tablas: <b>3.420</b></li>
-            <li>Núcleos: <b>1.180</b></li>
-            <li>Costeros: <b>740</b></li>
-            <li>Volumen: <b>62,4 m³</b></li>
-            <li>Horas op.: <b>7 h 12 min</b></li>
-            <li>Paros: <b>2</b> (18 min)</li>
-          </ul>
-          <span class="time">15:21</span>
-        </div>
-        <div class="tg-m">
-          <div class="hh alert">⚠️ Alerta mantenimiento</div>
-          Múltiple — vibración <b>5,8 mm/s</b>. Revisión &lt; 48 h.
-          <span class="time">11:47</span>
-        </div>
-      </div>
+    <div class="hero-shot">
+      <img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.12.37.jpeg" alt="Dashboard de BottMill en tiempo real"/>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
+<!-- TRUST -->
 <section class="trust">
-  <div class="container trust-inner">
-    <div class="trust-item">🎯 <strong>Hecho a medida</strong> · cada aserradero</div>
-    <div class="trust-item">📦 <strong>Llave en mano</strong> · no instalas nada</div>
-    <div class="trust-item">🔒 <strong>Datos en local</strong> · sin nube</div>
-    <div class="trust-item">⚡ <strong>Bitt Ingeniería</strong> · Industry 5.0</div>
+  <div class="container trust-in">
+    <div class="trust-it">⚡ <strong>Tiempo real</strong> · dashboard en vivo</div>
+    <div class="trust-it">📱 <strong>PWA móvil</strong> · instalable</div>
+    <div class="trust-it">🔒 <strong>Acceso privado</strong> · por cliente</div>
+    <div class="trust-it">🛠️ <strong>Llave en mano</strong> · Bitt Ingeniería</div>
   </div>
 </section>
 
-<!-- DOLORES -->
-<section class="section dolores fade-in">
+<!-- PROBLEMA / SOLUCION -->
+<section class="section ba">
   <div class="container">
-    <h2 class="section-title">Tu aserradero produce.<br/>Pero, ¿controlas qué pasa dentro?</h2>
-    <p class="section-subtitle">La información de producción, máquinas, consumos y próximas roturas vive en cuadernos, en la cabeza del operario o no existe. Las decisiones se toman a ojo.</p>
-    <div class="dolores-grid stagger">
-      <div class="dolor-card"><h4>No sabes qué produce cada línea</h4><p>Tablas, núcleos, costeros, m³ — invisibles hasta final de turno.</p></div>
-      <div class="dolor-card"><h4>El estado de las máquinas es opaco</h4><p>Te enteras cuando una se rompe. No antes.</p></div>
-      <div class="dolor-card"><h4>Mantenimiento reactivo</h4><p>Cambias el motor cuando deja de funcionar. Cada parada cuesta turnos enteros.</p></div>
-      <div class="dolor-card"><h4>Consumos a ciegas</h4><p>¿Qué máquina dispara la factura este mes? Nadie lo sabe.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUCIÓN / FEATURES -->
-<section class="section features fade-in">
-  <div class="container">
-    <h2 class="section-title">Pregunta en chat en vivo.<br/>Tu aserradero responde.</h2>
-    <p class="section-subtitle">BottMill instala un equipo dedicado en el aserradero que recoge datos de máquinas, sensores y sistemas existentes — y los convierte en un asistente en chat en vivo para gerencia, planta, mantenimiento y administración.</p>
-    <div class="features-grid stagger">
-      <div class="feat"><div class="ico">🪚</div><h3>Producción en tiempo real</h3><p>Tablas, núcleos, costeros y m³ por línea — al minuto.</p></div>
-      <div class="feat"><div class="ico">⚙️</div><h3>Estado de máquinas</h3><p>OK, aviso o parada de cada máquina. Horas operativas. Paros con duración.</p></div>
-      <div class="feat acento"><div class="ico">🔧</div><h3>Mantenimiento predictivo</h3><p>Vibración, temperatura, horas. Alerta antes de la rotura.<span class="ast">* Requiere sensores específicos</span></p></div>
-      <div class="feat acento"><div class="ico">⚡</div><h3>Consumo por máquina</h3><p>kWh hoy, pico instantáneo, baseline mensual.<span class="ast">* Requiere sensores específicos</span></p></div>
-      <div class="feat"><div class="ico">📊</div><h3>Resumen quincenal + informe mensual</h3><p>PDF automático cada día 1 — chat en vivo y email.</p></div>
-      <div class="feat"><div class="ico">💬</div><h3>Chat en lenguaje natural</h3><p>Pregunta como hablas. Sin formación, sin VPN, sin Excel.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- MOCKUPS CHAT -->
-<section class="section mocks fade-in" id="capturas">
-  <div class="container">
-    <h2 class="section-title">Ejemplos de lo que puedes preguntar</h2>
-    <p class="section-subtitle">Conversaciones reales de cómo BottMill responde en el día a día del aserradero.</p>
-    <div class="mocks-grid stagger">
-      <div class="mock-wrap">
-        <div class="tg-mock">
-          <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
-          <div class="tg-m me">Estado máquinas<span class="time">10:04 ✓✓</span></div>
-          <div class="tg-m">
-            <div class="hh">🪚 Estado actual</div>
-            <ul>
-              <li><b>Sierra principal:</b> ✅ OK</li>
-              <li><b>Trozadora:</b> ✅ OK</li>
-              <li><b>Múltiple:</b> ⚠️ Vibración alta</li>
-              <li><b>Descortezadora:</b> ✅ OK</li>
-              <li><b>Cinta clasificadora:</b> 🔴 Parada</li>
-            </ul>
-            <span class="time">10:04</span>
-          </div>
-        </div>
-        <div class="label">Estado de máquinas<small>"estado máquinas"</small></div>
-      </div>
-
-      <div class="mock-wrap">
-        <div class="tg-mock">
-          <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
-          <div class="tg-m">
-            <div class="hh alert">⚠️ Alerta mantenimiento</div>
-            <b>Múltiple — motor principal</b><br/>
-            Vibración: <b>5,8 mm/s</b> (umbral 4,5)<br/>
-            Tendencia: ↑ 23 % en 7 días<br/>
-            Revisión recomendada antes de 48 h.
-            <span class="time">11:47</span>
-          </div>
-          <div class="tg-m">
-            <div class="hh ok">✅ Mantenimiento ejecutado</div>
-            Vibración vuelve a <b>3,2 mm/s</b>.
-            <span class="time">14:12</span>
-          </div>
-        </div>
-        <div class="label">Alerta predictiva<small>Automática — sensor de vibración</small></div>
-      </div>
-
-      <div class="mock-wrap">
-        <div class="tg-mock">
-          <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
-          <div class="tg-m me">Consumo sierra hoy<span class="time">17:30 ✓✓</span></div>
-          <div class="tg-m">
-            <div class="hh">⚡ Sierra principal</div>
-            <ul>
-              <li>Hoy: <b>184 kWh</b></li>
-              <li>Media diaria mes: <b>176 kWh</b></li>
-              <li>Variación: <b>+4,5 %</b></li>
-              <li>Pico: <b>32 kW</b> a las 11:42</li>
-              <li>Acumulado mes: <b>4.215 kWh</b></li>
-            </ul>
-            <span class="time">17:30</span>
-          </div>
-        </div>
-        <div class="label">Consumo por motor<small>"consumo sierra hoy"</small></div>
-      </div>
-
-      <div class="mock-wrap">
-        <div class="tg-mock">
-          <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
-          <div class="tg-m">
-            <div class="hh">📊 Resumen quincenal</div>
-            <b>Quincena 11/05–24/05/2026</b><br/><br/>
-            <ul>
-              <li>Tablas: <b>16.840</b></li>
-              <li>Núcleos: <b>5.920</b></li>
-              <li>Costeros: <b>3.640</b></li>
-              <li>Volumen: <b>312,5 m³</b></li>
-            </ul>
-            <br/>vs quincena ant.: Volumen <b>+8,2 %</b>, Tablas <b>+11 %</b>
-            <span class="time">09:09</span>
-          </div>
-        </div>
-        <div class="label">Resumen quincenal<small>Automático cada 15 días</small></div>
-      </div>
-
-      <div class="mock-wrap">
-        <div class="tg-mock">
-          <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
-          <div class="tg-m me">Producción línea 1 hoy<span class="time">14:08 ✓✓</span></div>
-          <div class="tg-m">
-            <div class="hh">🪚 Línea 1 — Hoy</div>
-            <ul>
-              <li>Tablas: <b>4.820</b></li>
-              <li>Núcleos: <b>1.760</b></li>
-              <li>Costeros: <b>1.080</b></li>
-              <li>Volumen: <b>92,3 m³</b></li>
-              <li>Ritmo: <b>+12 %</b> vs media</li>
-            </ul>
-            <span class="time">14:08</span>
-          </div>
-        </div>
-        <div class="label">Producción por línea<small>"producción línea 1 hoy"</small></div>
-      </div>
-
-      <div class="mock-wrap">
-        <div class="tg-mock">
-          <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
-          <div class="tg-m me">Alertas pendientes<span class="time">08:30 ✓✓</span></div>
-          <div class="tg-m">
-            <div class="hh">🔧 Alertas activas</div>
-            <ul>
-              <li>Múltiple — vibración (48h)</li>
-              <li>Trozadora — temperatura motor (24h)</li>
-              <li>Cinta 2 — paros frecuentes (semana)</li>
-            </ul>
-            Próximas revisiones programadas: <b>3</b>
-            <span class="time">08:30</span>
-          </div>
-        </div>
-        <div class="label">Mantenimiento<small>"alertas pendientes"</small></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INFORMES AUTOMÁTICOS -->
-<section class="section informes fade-in" id="informes">
-  <div class="container">
-    <h2 class="section-title">Resúmenes e informes automáticos</h2>
-    <p class="section-subtitle">Sin pedirlos, sin prepararlos. El sistema te los entrega a los responsables — <strong>por chat en vivo y por email</strong>, las dos vías a la vez.</p>
-    <div class="informes-grid stagger">
-      <div class="informe-card">
-        <div class="ic">📊</div>
-        <div class="freq">Cada 15 días</div>
-        <h3>Resumen quincenal</h3>
-        <p>Producción de la quincena por línea, comparativa con la quincena anterior, día a día, paros e incidencias destacadas.</p>
-        <div class="preview" aria-hidden="true">
-          <div class="preview-chat">
-            <div class="pc-head"><div class="dot">B</div><div>BottMill<small>bot</small></div></div>
-            <div class="msg">
-              <div class="hh">📊 Resumen quincenal · 11/05 – 24/05</div>
-              <ul>
-                <li>🌲 Volumen: <b>892 m³</b> <span class="vs">+6,2 %</span></li>
-                <li>📋 Tablas: <b>48.310</b> <span class="vs">+4,1 %</span></li>
-                <li>🪵 Núcleos: <b>16.420</b></li>
-                <li>🪚 Línea 1: <b>421 m³</b> · L2: <b>471 m³</b></li>
-                <li>⏱️ Horas op.: <b>168 h</b> · paros <b>9 h</b> <span class="vs dn">+2 h</span></li>
-                <li>⚡ kWh: <b>9.840</b> <span class="vs">−1,8 %</span></li>
-              </ul>
-              <span class="time">lun 25/05 · 08:00</span>
-            </div>
-          </div>
-        </div>
+    <h2 class="section-title">Del "a ojo" a los datos reales</h2>
+    <p class="section-sub">Así cambia el día a día de tu aserradero con BottMill.</p>
+    <div class="ba-grid">
+      <div class="ba-card before">
+        <div class="h">Antes</div>
         <ul>
-          <li>Tablas, núcleos, costeros y m³ por línea</li>
-          <li>Comparativa vs quincena anterior (%)</li>
-          <li>Día a día con horas operativas</li>
-          <li>Paros y duración</li>
-        </ul>
-        <div class="delivery"><span>💬 Chat en vivo</span><span>📧 Email</span></div>
-      </div>
-      <div class="informe-card mensual">
-        <div class="ic">📄</div>
-        <div class="freq">Cada día 1 del mes</div>
-        <h3>Informe mensual PDF</h3>
-        <p>PDF con la marca de tu aserradero. KPIs, gráficos, evolución diaria, reparto por línea y máquina, y comparativa con el mes anterior.</p>
-        <div class="preview" aria-hidden="true">
-          <div class="preview-pdf">
-            <div class="sheet">
-              <div class="ph">
-                <div class="lg">B</div>
-                <div class="ttl">INFORME MENSUAL DE PRODUCCIÓN</div>
-                <div class="per">Mayo 2026</div>
-                <div class="cli">Tu Aserradero S.L.</div>
-              </div>
-              <div class="pbody">
-                <div class="kpis">
-                  <div class="kpi"><div class="l">Volumen</div><div class="v">1.842</div><div class="u">m³</div></div>
-                  <div class="kpi"><div class="l">Tablas</div><div class="v">98.412</div><div class="u">uds</div></div>
-                  <div class="kpi"><div class="l">Núcleos</div><div class="v">33.870</div><div class="u">uds</div></div>
-                  <div class="kpi"><div class="l">Media/día</div><div class="v">86,7</div><div class="u">m³/día</div></div>
-                  <div class="kpi"><div class="l">Horas op.</div><div class="v">336</div><div class="u">h</div></div>
-                  <div class="kpi"><div class="l">kWh</div><div class="v">19.640</div><div class="u">kWh</div></div>
-                </div>
-                <div class="ststit">Volumen por día (m³)</div>
-                <div class="chart">
-                  <i style="height:55%"></i><i style="height:68%"></i><i style="height:72%"></i><i style="height:46%"></i><i style="height:81%"></i><i style="height:90%"></i><i style="height:38%"></i><i style="height:64%"></i><i style="height:75%"></i><i style="height:82%"></i><i style="height:60%"></i><i style="height:50%"></i><i style="height:88%"></i><i style="height:70%"></i><i style="height:78%"></i><i style="height:55%"></i><i style="height:84%"></i><i style="height:66%"></i><i style="height:72%"></i><i style="height:90%"></i>
-                </div>
-                <div class="conc">Mejor día: <b>26 (98 m³)</b>. <b>17 de 21</b> días superaron la media. Línea 2 lidera con <b>54 %</b> del volumen.</div>
-                <div class="ststit">Comparativa abril vs mayo</div>
-                <div class="conc">Volumen <b>+8,4 %</b> · ritmo medio <b>118 → 124 tablas/h</b> · paros <b>−12 %</b>.</div>
-              </div>
-              <div class="pftr"><span>Bitt Ingeniería · BottMill</span><span>Pág. 1 / 4</span></div>
-            </div>
-          </div>
-        </div>
-        <ul>
-          <li>Resumen del período + producción diaria</li>
-          <li>Reparto por línea y por máquina</li>
-          <li>Horas operativas y paros</li>
-          <li>Sección mantenimiento*</li>
-          <li>Comparativa mes anterior + acumulado anual</li>
-        </ul>
-        <div class="delivery"><span>💬 Chat en vivo</span><span>📧 Email</span></div>
-      </div>
-    </div>
-    <p class="informes-foot">¿Quieres uno anterior? Pídelo al bot — <code>/informe</code> → eliges el período → lo recibes al chat.</p>
-  </div>
-</section>
-
-<!-- FASES -->
-<section class="section fases fade-in" id="fases">
-  <div class="container">
-    <h2 class="section-title">Cada aserradero es distinto.<br/>BottMill se adapta.</h2>
-    <p class="section-subtitle">No vendemos un paquete cerrado. Definimos juntos qué medir, por dónde empezar y qué ampliar más adelante.</p>
-    <div class="fases-list stagger">
-      <div class="fase"><div class="n">1</div><h4>Visita técnica</h4><p>Vamos al aserradero. Vemos qué máquinas hay, qué datos ya se generan y qué te gustaría poder responder desde el móvil.</p></div>
-      <div class="fase"><div class="n">2</div><h4>Propuesta a medida</h4><p>Plan claro con dos fases: qué se puede medir ya con lo que tienes, y qué sensores adicionales hacen falta para ampliar.</p></div>
-      <div class="fase"><div class="n">3</div><h4>Instalación llave en mano</h4><p>Llevamos el equipo configurado. Instalamos los sensores donde toque. Conectamos a tu red. Tu equipo no instala nada.</p></div>
-      <div class="fase"><div class="n">4</div><h4>Configuración y formación express</h4><p>Damos de alta a los usuarios, acordamos umbrales y canales de alerta. 15-20 minutos por usuario.</p></div>
-      <div class="fase"><div class="n">5</div><h4>Soporte y evolución</h4><p>El bot vive contigo. Ampliamos métricas y sensores según vayáis viendo qué falta. Sin reinstalar nada.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ROLES -->
-<section class="section roles fade-in">
-  <div class="container">
-    <h2 class="section-title">Qué gana cada perfil del aserradero</h2>
-    <p class="section-subtitle">Mismo bot. Mismo equipo. Cuatro modos de usarlo según para qué.</p>
-    <div class="roles-grid stagger">
-      <div class="role">
-        <div class="ic">🧑‍💼</div>
-        <h4>Dirección</h4>
-        <ul>
-          <li>Producción del día sin pedirla</li>
-          <li>Informe mensual en email</li>
-          <li>Comparativas entre meses</li>
-          <li>Decisiones con datos</li>
+          <li>Sin datos hasta el cierre del turno</li>
+          <li>Informes manuales y tardíos</li>
+          <li>Decisiones a ojo, sin contraste</li>
+          <li>Los problemas se ven cuando ya cuestan</li>
         </ul>
       </div>
-      <div class="role">
-        <div class="ic">👷</div>
-        <h4>Jefe de planta</h4>
+      <div class="ba-card after">
+        <div class="h">Después</div>
         <ul>
-          <li>Estado de cada línea al minuto</li>
-          <li>Alertas inmediatas</li>
-          <li>Reparto por máquina</li>
-          <li>Visibilidad del cuello de botella</li>
-        </ul>
-      </div>
-      <div class="role">
-        <div class="ic">🔧</div>
-        <h4>Mantenimiento</h4>
-        <ul>
-          <li>Alertas de vibración / temperatura</li>
-          <li>Mantenimiento predictivo</li>
-          <li>Histórico de intervenciones</li>
-          <li>Informe mensual de mantenimiento</li>
-        </ul>
-      </div>
-      <div class="role">
-        <div class="ic">📋</div>
-        <h4>Administración</h4>
-        <ul>
-          <li>Datos limpios para facturación</li>
-          <li>Exportes para gestoría</li>
-          <li>Sin pedir nada a planta</li>
-          <li>Trazabilidad auditable</li>
+          <li>Producción al minuto, en cualquier pantalla</li>
+          <li>Informes PDF automáticos por email</li>
+          <li>Objetivos y datos reales a la vista</li>
+          <li>Alertas preventivas en tiempo real</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TABLA FASES -->
-<section class="section tabla-fases fade-in">
+<!-- FEATURES -->
+<section class="section features" id="features">
   <div class="container">
-    <h2 class="section-title">Un ejemplo de cómo crece BottMill contigo</h2>
-    <p class="section-subtitle">Empezamos por lo que más duele hoy. Crecemos cuando lo decidas.</p>
-    <div class="tabla-wrap">
-      <table class="fases-tabla">
-        <thead>
-          <tr><th>Fase 1 — Arranque</th><th>Fase 2 — Ampliación</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Conteo de tablas, núcleos, costeros por línea</td><td>Sensores de vibración en motores críticos</td></tr>
-          <tr><td>Volumen m³ por línea</td><td>Medida de consumo eléctrico por línea</td></tr>
-          <tr><td>Estado y horas operativas de máquinas</td><td>Alertas predictivas por umbrales</td></tr>
-          <tr><td>Paros con duración</td><td>Informe mensual con sección mantenimiento</td></tr>
-          <tr><td>Resumen quincenal + informe mensual PDF</td><td>Métricas adicionales que detectéis útiles</td></tr>
-        </tbody>
-      </table>
+    <h2 class="section-title">Todo tu aserradero, en una plataforma</h2>
+    <p class="section-sub">Diseñada para el día a día industrial: clara, rápida y accesible desde cualquier dispositivo.</p>
+    <div class="fgrid">
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div><h3>Dashboard en tiempo real</h3><p>Producción acumulada del día, al instante, en PC y móvil.</p></div>
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></div><h3>Objetivo del día con zona stock</h3><p>Meta por métrica (m³, tablas, núcleos, costeros) y stock al superarla.</p></div>
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Chat con IA</h3><p>Consultas de producción en lenguaje natural, al instante.</p></div>
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H5.2L4 17.2z"/><path d="M8 9h8M8 12h5"/></svg></div><h3>Alertas + email automático</h3><p>Aviso al completar el objetivo, con la hora exacta, también por correo.</p></div>
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></div><h3>Informes PDF</h3><p>Mensuales y quincenales, generados y enviados automáticamente.</p></div>
+      <div class="feat"><div class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>PWA móvil (Pro)</h3><p>Instálala como app y recibe notificaciones push en tiempo real.</p></div>
     </div>
   </div>
 </section>
 
-<!-- SEGURIDAD -->
-<section class="section security fade-in" id="seguridad">
+<!-- GALERIA -->
+<section class="section shots" id="capturas">
   <div class="container">
-    <h2 class="section-title">Tus datos no salen del aserradero.</h2>
-    <p class="section-subtitle">En un momento en el que todo el mundo está preocupado por dónde acaban sus datos, BottMill está diseñado desde el primer minuto asumiendo que los tuyos son sensibles y se quedan en casa.</p>
-    <div class="security-grid stagger">
-      <div class="sec-card"><div class="ico">🚫☁️</div><h4>Sin nube</h4><p>El sistema vive en local, en un equipo bajo tu control. No hay servidor externo ni backups remotos.</p></div>
-      <div class="sec-card"><div class="ico">🧠</div><h4>IA 100% local</h4><p>El modelo que entiende tus preguntas corre on-device. Sin OpenAI, sin Anthropic, sin Google.</p></div>
-      <div class="sec-card"><div class="ico">👁️</div><h4>Sólo lectura</h4><p>El bot consulta — no escribe en PLCs ni sistemas productivos.</p></div>
-      <div class="sec-card"><div class="ico">🔑</div><h4>Whitelist por usuario</h4><p>Sólo los IDs de Telegram autorizados pueden consultar. Cualquier otro chat se ignora.</p></div>
-      <div class="sec-card"><div class="ico">🚪</div><h4>Sin puertos abiertos</h4><p>Sin Docker, sin telemetría a terceros. La única salida es HTTPS a Telegram.</p></div>
-      <div class="sec-card"><div class="ico">🛡️</div><h4>Queries parametrizadas</h4><p>Todo el código usa parámetros. Sin riesgo de inyección.</p></div>
+    <h2 class="section-title">Así se ve por dentro</h2>
+    <p class="section-sub">Capturas reales de la plataforma BottMill en funcionamiento.</p>
+    <div class="shots-grid">
+      <div class="shot-card wide"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.12.37.jpeg" alt="Dashboard"/><div class="cap"><h4>Dashboard en tiempo real</h4><p>Producción acumulada del día, KPIs por métrica, objetivo y zona de stock.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.13.10.jpeg" alt="Chat con IA"/><div class="cap"><h4>Chat con IA + Soporte Bitt</h4><p>Pregunta en lenguaje natural y contacta con Bitt desde el mismo chat.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.14.01.jpeg" alt="Alertas"/><div class="cap"><h4>Alertas</h4><p>Avisos de objetivo completado, con la hora exacta y filtrables por tipo.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.15.52.jpeg" alt="Histórico"/><div class="cap"><h4>Histórico</h4><p>Filtros de fecha, gráficas de evolución y detalle por turno.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.15.52%20(1).jpeg" alt="Informes"/><div class="cap"><h4>Informes PDF</h4><p>Mensuales y quincenales, listos para descargar y por email.</p></div></div>
     </div>
-    <p class="note">Lo único que sale del aserradero es el texto de los mensajes que el bot envía a los usuarios autorizados, transportado por HTTPS al servidor de Telegram. El mismo flujo que cualquier mensaje de WhatsApp.</p>
-  </div>
-</section>
 
-<!-- FAQ -->
-<section class="section faq fade-in" id="faq">
-  <div class="container">
-    <h2 class="section-title">Preguntas frecuentes</h2>
-    <p class="section-subtitle">Lo que suelen preguntarnos antes de dar el paso.</p>
-    <div class="faq-list">
-      <details class="faq-item"><summary>¿Necesito tener ya algún sistema?</summary><div class="answer">No. Si tienes PLCs o autómatas los aprovechamos. Si no, instalamos los sensores necesarios. Lo evaluamos en la visita técnica.</div></details>
-      <details class="faq-item"><summary>¿Quién instala?</summary><div class="answer">Nosotros. Llave en mano. Llevamos el equipo configurado y los sensores. Tu gente no instala nada.</div></details>
-      <details class="faq-item"><summary>¿Mis datos van a alguna nube?</summary><div class="answer">No. El sistema vive en tu aserradero. La IA es local. No hay nube, no hay servidor externo, no hay telemetría a terceros.</div></details>
-      <details class="faq-item"><summary>¿Cuánto cuesta?</summary><div class="answer">Depende del alcance — número de líneas, máquinas, sensores adicionales. Por eso primero hacemos visita técnica y después cotización. La visita es gratuita.</div></details>
-      <details class="faq-item"><summary>¿Funciona sin internet?</summary><div class="answer">El modelo de IA es local. La única conexión externa es Telegram (HTTPS) para entregar mensajes a los usuarios autorizados.</div></details>
-      <details class="faq-item"><summary>¿Y si tengo varios responsables?</summary><div class="answer">Cada uno con su chat. Damos de alta los IDs autorizados. Sólo ellos pueden consultar.</div></details>
-      <details class="faq-item"><summary>¿Hay formación para mis operarios?</summary><div class="answer">No. Se escribe en chat en vivo como hablas. «Producción línea 1», «estado máquinas», «consumo sierra». El bot entiende lenguaje natural.</div></details>
-      <details class="faq-item"><summary>¿Y el RGPD?</summary><div class="answer">El bot no procesa datos personales más allá del user.id de Telegram de los usuarios autorizados. Los datos del aserradero son industriales.</div></details>
-      <details class="faq-item"><summary>¿Y si mi aserradero cambia mañana?</summary><div class="answer">Ampliamos o ajustamos lo que necesites — más máquinas, más sensores, más métricas. Sin reinstalar nada.</div></details>
+    <div class="shots-sub">El informe PDF que recibes cada mes</div>
+    <div class="shots-grid">
+      <div class="shot-card"><img src="assets/capturas/informe%201.jpeg" alt="Informe PDF página 1"/><div class="cap"><h4>Resumen ejecutivo + producción diaria</h4><p>KPIs del mes, comparativa con el periodo anterior y gráfica diaria.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/informe%202.jpeg" alt="Informe PDF página 2"/><div class="cap"><h4>Desglose y conclusiones</h4><p>Reparto por tipo de pieza, resumen semanal, alertas y conclusiones automáticas.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="cta-final" id="cta">
+<!-- COMO FUNCIONA -->
+<section class="section how" id="como">
   <div class="container">
-    <h2>Empieza por una visita técnica gratuita</h2>
-    <p>Vamos al aserradero, vemos qué hay, y volvemos con una propuesta clara con fases y prioridades. Sin compromiso.</p>
-    <div class="cta-buttons">
-      <a href="tel:+34607306219" class="btn btn-primary">📞 Llamar al 607 306 219</a>
-      <a href="mailto:bitt@bitt.es?subject=Visita%20t%C3%A9cnica%20BotMill&body=Hola%2C%20me%20interesa%20una%20visita%20t%C3%A9cnica%20para%20BotMill%20en%20mi%20aserradero." class="btn btn-outline">✉️ Escribir email</a>
-      <a href="https://wa.me/34607306219?text=Hola%2C%20me%20interesa%20BotMill%20para%20mi%20aserradero." target="_blank" rel="noopener" class="btn btn-whatsapp">📱 WhatsApp</a>
+    <h2 class="section-title">¿Cómo funciona?</h2>
+    <p class="section-sub">En tres pasos, sin que tu equipo instale ni configure nada.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Instalamos el sistema en tu planta</h4><p>Bitt conecta tu línea de producción a la plataforma, llave en mano.</p></div>
+      <div class="step"><div class="n">2</div><h4>Los datos fluyen en tiempo real</h4><p>Abre el panel desde el navegador o el móvil y la jornada crece sola.</p></div>
+      <div class="step"><div class="n">3</div><h4>Tú decides con información real</h4><p>Objetivos, alertas e informes PDF automáticos por email.</p></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACTO -->
-<section class="contacto">
+<!-- PLANES -->
+<section class="section plans" id="planes">
   <div class="container">
-    <div class="contacto-grid">
-      <div class="contacto-card">
-        <div class="ico">📞</div>
-        <div class="lbl">Teléfono</div>
-        <a href="tel:+34607306219">607 306 219</a>
+    <h2 class="section-title">Planes</h2>
+    <p class="section-sub">Precio a consultar según el número de líneas y el alcance. Instalación llave en mano incluida.</p>
+    <div class="plans-grid">
+      <div class="plan">
+        <div class="nm">Base</div><div class="pr">Precio a consultar</div>
+        <ul>
+          <li>Dashboard tiempo real (PC y móvil)</li>
+          <li>Chat con IA en lenguaje natural</li>
+          <li>Alertas automáticas + email</li>
+          <li>Informes PDF mensuales y quincenales</li>
+          <li>Histórico con filtros de fechas</li>
+          <li>Soporte Bitt (canal de chat)</li>
+          <li class="no">Aplicación móvil PWA</li>
+          <li class="no">Notificaciones push en smartphone</li>
+        </ul>
+        <a href="#demo" class="btn btn-outline">Solicitar demo</a>
       </div>
-      <div class="contacto-card">
-        <div class="ico">✉️</div>
-        <div class="lbl">Email</div>
-        <a href="mailto:bitt@bitt.es">bitt@bitt.es</a>
-      </div>
-      <div class="contacto-card">
-        <div class="ico">🌐</div>
-        <div class="lbl">Web</div>
-        <a href="https://www.bitt.es" target="_blank" rel="noopener">www.bitt.es</a>
+      <div class="plan pop">
+        <div class="nm">Pro</div><div class="pr">Precio a consultar</div>
+        <ul>
+          <li>Todo lo del Plan Base</li>
+          <li>Aplicación móvil PWA instalable</li>
+          <li>Notificaciones push en tiempo real</li>
+          <li>Soporte VIP (respuesta prioritaria)</li>
+        </ul>
+        <a href="#demo" class="btn btn-primary">Solicitar demo</a>
       </div>
     </div>
+
+    <div class="activo">
+      <div class="ah">
+        <div class="nm">BottMill <span>Activo</span></div>
+        <div class="pr">30€<small> /mes</small></div>
+      </div>
+      <div class="desc">Incluido el primer año · opcional a partir del segundo. Sin Activo: soporte puntual con coste por intervención.</div>
+      <div class="ag">
+        <span>Soporte 24/7</span>
+        <span>Actualizaciones y nuevas versiones automáticas</span>
+        <span>Asistencia remota</span>
+        <span>Revisión mensual de funcionamiento</span>
+        <span>Copia de seguridad doble verificada</span>
+        <span>Soporte puntual sin coste extra</span>
+      </div>
+    </div>
+    <p class="plan-note">+30 años en el sector. Sabemos lo que necesitas.</p>
+  </div>
+</section>
+
+<!-- CTA + FORM -->
+<section class="section cta" id="demo">
+  <div class="container cta-grid">
+    <div>
+      <h2>¿Hablamos de qué<br/><span>digitalizar primero?</span></h2>
+      <p>Solicita una demo y te enseñamos BottMill funcionando en tiempo real, con datos de tu aserradero. Sin compromiso.</p>
+      <div class="data">
+        <div>✉️ <a href="mailto:bitt@bitt.es">bitt@bitt.es</a></div>
+        <div>📞 <a href="tel:+34607306219">607 306 219</a></div>
+        <div>🌐 <a href="https://panel.bitt.es">panel.bitt.es</a></div>
+      </div>
+    </div>
+    <form id="demoForm">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required/>
+      <label for="empresa">Empresa</label>
+      <input id="empresa" name="empresa" type="text" placeholder="Nombre del aserradero"/>
+      <label for="telefono">Teléfono</label>
+      <input id="telefono" name="telefono" type="tel" placeholder="Tu teléfono"/>
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué te gustaría ver"></textarea>
+      <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+    </form>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="foot-logo">
+    <div class="fl">
       <img src="assets/logo_bitt.png" alt="Bitt Ingeniería"/>
-      <span style="color:#fff;font-family:var(--font-title);font-weight:700;letter-spacing:1px">BITT INGENIERÍA</span>
+      <span class="wm">Bo<span class="tt">tt</span>Mill</span>
     </div>
-    <p>BottMill — desarrollado 100 % por Bitt Ingeniería ⚡ · Industry 5.0 para PYMEs industriales</p>
-    <p style="margin-top:8px"><a href="https://www.bitt.es" target="_blank" rel="noopener">www.bitt.es</a> · <a href="mailto:bitt@bitt.es">bitt@bitt.es</a> · <a href="tel:+34607306219">607 306 219</a></p>
-    <p style="margin-top:14px;font-size:.78rem;opacity:.7">© 2026 Bitt Ingeniería · Todos los derechos reservados</p>
+    <p>Desarrollado por <strong>Bitt Ingeniería</strong> ⚡ · <a href="mailto:bitt@bitt.es">bitt@bitt.es</a> · 607 306 219 · <a href="https://www.bitt.es">www.bitt.es</a></p>
+    <p class="yr">+30 años en el sector. Sabemos lo que necesitas.</p>
   </div>
 </footer>
 
-<!-- STICKY CTA MOBILE (oculta en desktop por CSS) -->
-<nav class="mobile-cta" aria-label="Acciones rápidas">
-  <a href="tel:+34607306219" class="call" aria-label="Llamar al 607 306 219">📞 Llamar</a>
-  <a href="https://wa.me/34607306219?text=Hola%2C%20me%20interesa%20BottMill%20para%20mi%20aserradero." target="_blank" rel="noopener" class="wa" aria-label="WhatsApp">💬 WhatsApp</a>
-</nav>
-
 <script>
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
-},{threshold:0.08});
-document.querySelectorAll('.fade-in,.stagger').forEach(el=>observer.observe(el));
-
-// CTA flotante mobile: aparece sólo al pasar el top de la sección FAQ
-const faqSec=document.getElementById('faq');
-const mCta=document.querySelector('.mobile-cta');
-if(faqSec && mCta){
-  const toggleCta=()=>{
-    const passed = window.scrollY + 80 >= faqSec.offsetTop;
-    mCta.classList.toggle('show', passed);
-  };
-  window.addEventListener('scroll', toggleCta, {passive:true});
-  window.addEventListener('resize', toggleCta);
-  toggleCta();
-}
+document.getElementById('demoForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var n=encodeURIComponent(this.nombre.value),emp=encodeURIComponent(this.empresa.value),
+      tel=encodeURIComponent(this.telefono.value),m=encodeURIComponent(this.mensaje.value);
+  var body='Nombre: '+n+'%0D%0AEmpresa: '+emp+'%0D%0ATeléfono: '+tel+'%0D%0A%0D%0A'+m;
+  window.location.href='mailto:bitt@bitt.es?subject='+encodeURIComponent('Solicitud de demo BottMill')+'&body='+body;
+});
 </script>
-
 </body>
 </html>
