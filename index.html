@@ -117,7 +117,7 @@ header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:bl
 
 /* PLANES */
 .plans{background:#fff}
-.plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:820px;margin:0 auto 22px;align-items:stretch}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1040px;margin:0 auto 22px;align-items:stretch}
 .plan{border:1px solid var(--line);border-radius:18px;padding:30px 26px;display:flex;flex-direction:column;background:var(--bg);transition:var(--tr)}
 .plan:hover{transform:translateY(-4px);box-shadow:var(--shadow-s)}
 .plan.pop{border:2px solid var(--green);box-shadow:var(--shadow-s);position:relative;background:#fff}
@@ -141,6 +141,44 @@ header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:bl
 .activo .ag span{font-size:.9rem;color:#e7ece8;padding-left:22px;position:relative}
 .activo .ag span::before{content:"✓";position:absolute;left:0;color:var(--green-l);font-weight:700}
 .plan-note{text-align:center;color:var(--muted);font-size:.86rem;margin-top:16px;font-style:italic}
+.plan .incl{color:var(--green-1);font-weight:600}
+.plan .ideal{padding-top:12px;margin-top:4px;border-top:1px dashed var(--line);font-size:.86rem;color:var(--muted)}
+.plan .ideal b{color:var(--green-1);font-weight:700}
+
+/* ACTIVO comparison table */
+.activo-table{max-width:880px;margin:30px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.activo-head{background:var(--dark);color:#fff;padding:20px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px 12px;position:relative;overflow:hidden}
+.activo-head::after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(76,175,104,.28),transparent 70%)}
+.activo-head .nm{font-family:var(--ft);font-weight:800;font-size:1.6rem;letter-spacing:.5px;position:relative;z-index:2}
+.activo-head .nm span{color:var(--green-l)}
+.activo-head .pr{font-family:var(--ft);font-weight:800;font-size:1.9rem;position:relative;z-index:2}
+.activo-head .pr small{font-size:.8rem;color:#b9c2bb;font-family:var(--fb);font-weight:500}
+.activo-head .sub{flex-basis:100%;color:#c7cdc8;font-size:.85rem;font-weight:400;position:relative;z-index:2}
+.cmp{width:100%;border-collapse:collapse}
+.cmp th,.cmp td{padding:11px 18px;text-align:left;font-size:.9rem;border-bottom:1px solid var(--line)}
+.cmp thead th{background:var(--bg);font-family:var(--ft);font-weight:700;letter-spacing:.5px;color:var(--ink)}
+.cmp thead th:not(:first-child){text-align:center;width:150px}
+.cmp tbody td:not(:first-child){text-align:center;font-weight:700;font-size:.86rem}
+.cmp tbody tr:last-child td{border-bottom:none}
+.cmp .yes{color:var(--green-d)}
+.cmp .no{color:#c25b5b}
+.cmp .col-act{background:var(--soft)}
+.cmp thead th.col-act{background:var(--soft2);color:var(--green-1)}
+/* GARANTIAS */
+.garantias{max-width:880px;margin:26px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.gar{background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow)}
+.gar h4{font-family:var(--ft);font-weight:800;font-size:1.15rem;color:var(--green-1);margin-bottom:6px;letter-spacing:.3px}
+.gar p{font-size:.9rem;color:var(--muted);line-height:1.5}
+.gar .big{font-family:var(--ft);font-weight:800;color:var(--green-d);font-size:1.25rem}
+/* FAQ */
+.faq-wrap{max-width:820px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 4px;text-align:left;font-family:var(--fb);font-size:1.05rem;font-weight:600;color:var(--ink)}
+.faq-q .ico{flex:0 0 auto;font-family:var(--ft);font-weight:800;font-size:1.7rem;color:var(--green);line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 4px 20px;color:var(--muted);font-size:.96rem;line-height:1.55}
+.faq-item.open .faq-a{max-height:360px}
+.faq-item.open .faq-q .ico{color:var(--green-d)}
 
 /* CTA + FORM */
 .cta{background:linear-gradient(135deg,var(--dark),#242424);color:#fff;position:relative;overflow:hidden}
@@ -177,7 +215,8 @@ footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
 }
 @media(max-width:600px){
   .section{padding:54px 0}.container{padding:0 18px}
-  .fgrid,.shots-grid,.steps,.plans-grid,.ba-grid,.activo .ag{grid-template-columns:1fr}
+  .fgrid,.shots-grid,.steps,.plans-grid,.ba-grid,.activo .ag,.garantias{grid-template-columns:1fr}
+  .cmp th,.cmp td{padding:9px 12px;font-size:.82rem}.cmp thead th:not(:first-child){width:auto}
   .hero{padding:50px 0 60px}.hero .wm{font-size:2.3rem}
   .nav .left .wm{font-size:1.45rem}.nav .links{gap:6px}
   .trust-in{gap:16px}
@@ -315,45 +354,65 @@ footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
     <p class="section-sub">Precio a consultar según el número de líneas y el alcance. Instalación llave en mano incluida.</p>
     <div class="plans-grid">
       <div class="plan">
-        <div class="nm">Base</div><div class="pr">Precio a consultar</div>
+        <div class="nm">BottMill Base</div><div class="pr">Precio a consultar</div>
         <ul>
-          <li>Dashboard tiempo real (PC y móvil)</li>
-          <li>Chat con IA en lenguaje natural</li>
-          <li>Alertas automáticas + email</li>
-          <li>Informes PDF mensuales y quincenales</li>
-          <li>Histórico con filtros de fechas</li>
-          <li>Soporte Bitt (canal de chat)</li>
-          <li class="no">Aplicación móvil PWA</li>
-          <li class="no">Notificaciones push en smartphone</li>
+          <li>Datos completos de producción (tablas, núcleos, costeros, m³)</li>
+          <li>Alertas de producción</li>
+          <li>Informes mensuales automáticos</li>
+          <li class="incl">1er año BottMill Activo incluido</li>
         </ul>
-        <a href="#demo" class="btn btn-outline">Solicitar demo</a>
+        <div class="ideal"><b>Ideal para:</b> empezar a tener datos</div>
+        <a href="#demo" class="btn btn-outline" style="margin-top:16px">Solicitar demo</a>
       </div>
       <div class="plan pop">
-        <div class="nm">Pro</div><div class="pr">Precio a consultar</div>
+        <div class="nm">BottMill Pro</div><div class="pr">Precio a consultar</div>
         <ul>
-          <li>Todo lo del Plan Base</li>
-          <li>Aplicación móvil PWA instalable</li>
-          <li>Notificaciones push en tiempo real</li>
-          <li>Soporte VIP (respuesta prioritaria)</li>
+          <li>Todo lo de Base</li>
+          <li>Estado de máquinas en tiempo real</li>
+          <li>Sensores en motores críticos</li>
+          <li>Alertas de mantenimiento preventivo</li>
+          <li class="incl">1er año BottMill Activo incluido</li>
         </ul>
-        <a href="#demo" class="btn btn-primary">Solicitar demo</a>
+        <div class="ideal"><b>Ideal para:</b> datos + control de máquinas</div>
+        <a href="#demo" class="btn btn-primary" style="margin-top:16px">Solicitar demo</a>
+      </div>
+      <div class="plan">
+        <div class="nm">BottMill Total</div><div class="pr">Precio a consultar</div>
+        <ul>
+          <li>Todo lo de Pro</li>
+          <li>Múltiples líneas</li>
+          <li>Configuración a medida</li>
+          <li class="incl">1er año BottMill Activo incluido</li>
+        </ul>
+        <div class="ideal"><b>Ideal para:</b> instalaciones grandes</div>
+        <a href="#demo" class="btn btn-outline" style="margin-top:16px">Hablar con Bitt</a>
       </div>
     </div>
 
-    <div class="activo">
-      <div class="ah">
+    <div class="activo-table">
+      <div class="activo-head">
         <div class="nm">BottMill <span>Activo</span></div>
         <div class="pr">30€<small> /mes</small></div>
+        <div class="sub">Incluido el primer año · opcional a partir del segundo.</div>
       </div>
-      <div class="desc">Incluido el primer año · opcional a partir del segundo. Sin Activo: soporte puntual con coste por intervención.</div>
-      <div class="ag">
-        <span>Soporte 24/7</span>
-        <span>Actualizaciones y nuevas versiones automáticas</span>
-        <span>Asistencia remota</span>
-        <span>Revisión mensual de funcionamiento</span>
-        <span>Copia de seguridad doble verificada</span>
-        <span>Soporte puntual sin coste extra</span>
-      </div>
+      <table class="cmp">
+        <thead><tr><th>Servicio</th><th>Sin Activo</th><th class="col-act">Con BottMill Activo</th></tr></thead>
+        <tbody>
+          <tr><td>Soporte 24/7</td><td class="no">✘</td><td class="col-act yes">✔</td></tr>
+          <tr><td>Actualizaciones y nuevas versiones</td><td class="no">✘</td><td class="col-act yes">✔</td></tr>
+          <tr><td>Nuevas apps y funcionalidades</td><td class="no">✘</td><td class="col-act yes">✔</td></tr>
+          <tr><td>Asistencia remota</td><td class="no">✘</td><td class="col-act yes">✔</td></tr>
+          <tr><td>Revisión mensual de funcionamiento</td><td class="no">✘</td><td class="col-act yes">✔</td></tr>
+          <tr><td>Copia de seguridad básica</td><td class="yes">✔</td><td class="col-act yes">✔</td></tr>
+          <tr><td>Copia doble disco verificada mensualmente</td><td class="no">✘</td><td class="col-act yes">✔</td></tr>
+          <tr><td>Soporte puntual</td><td>✔ con coste por intervención</td><td class="col-act">✔ sin coste extra</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="garantias">
+      <div class="gar"><h4>Garantía de dispositivos</h4><p><span class="big">2 años</span> en todo el hardware instalado (cuadro eléctrico, PLC, SAI y sistema de escaneado).</p></div>
+      <div class="gar"><h4>Garantía de funcionamiento</h4><p><span class="big">30 días.</span> Si BottMill no entrega los datos acordados, devolvemos el 100 % y retiramos el equipo. Sin condiciones.</p></div>
     </div>
     <p class="plan-note">+30 años en el sector. Sabemos lo que necesitas.</p>
   </div>
@@ -385,6 +444,25 @@ footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="section faq" id="faq" style="background:#fff">
+  <div class="container">
+    <h2 class="section-title">Preguntas frecuentes</h2>
+    <p class="section-sub">Lo que suelen preguntarnos antes de dar el paso.</p>
+    <div class="faq-wrap">
+      <div class="faq-item"><button class="faq-q" type="button">¿Necesito tener ya algún sistema instalado?<span class="ico">+</span></button><div class="faq-a"><p>No. Llevamos todo el hardware: cuadro eléctrico, PLC, SAI y sistema de escaneado. Lo instalamos, configuramos y probamos antes de marcharnos.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">¿Quién instala?<span class="ico">+</span></button><div class="faq-a"><p>Nuestro equipo técnico de Bitt Ingeniería. La instalación dura entre 1 y 2 días según la planta. No necesitas parar la producción más de lo imprescindible.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">¿Mis datos van a alguna nube?<span class="ico">+</span></button><div class="faq-a"><p>Los datos se procesan en un servidor propio instalado en tu planta. No salen a ninguna nube externa sin tu autorización. Tú controlas tus datos.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">¿Cuánto cuesta?<span class="ico">+</span></button><div class="faq-a"><p>El sistema base tiene un coste de instalación único. Consulta nuestros planes en la sección anterior o escríbenos a bitt@bitt.es para un presupuesto personalizado.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">¿Funciona sin internet?<span class="ico">+</span></button><div class="faq-a"><p>Sí. BottMill funciona en red local. Solo necesitas internet si quieres acceder al dashboard desde fuera de la planta o recibir alertas en el móvil cuando no estás.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">¿Y si tengo varios responsables?<span class="ico">+</span></button><div class="faq-a"><p>Cada responsable puede tener su propio acceso. Todos ven los mismos datos en tiempo real desde su móvil o PC.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">¿Hay formación para mis operarios?<span class="ico">+</span></button><div class="faq-a"><p>Sí. Incluimos formación básica en la instalación. El sistema está diseñado para ser intuitivo — si sabes usar el móvil, sabes usar BottMill.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">¿Y el RGPD?<span class="ico">+</span></button><div class="faq-a"><p>Los datos de producción no contienen datos personales. El acceso al sistema está protegido con usuario y contraseña. Cumplimos con la normativa vigente.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">¿Y si mi aserradero cambia mañana?<span class="ico">+</span></button><div class="faq-a"><p>BottMill crece contigo. Puedes añadir líneas, cambiar configuraciones o ampliar el sistema. Llámanos y lo adaptamos.</p></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -398,6 +476,12 @@ footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
 </footer>
 
 <script>
+document.querySelectorAll('.faq-q').forEach(function(b){
+  b.addEventListener('click',function(){
+    var it=b.parentElement, open=it.classList.toggle('open');
+    b.querySelector('.ico').textContent = open ? '−' : '+';
+  });
+});
 document.getElementById('demoForm').addEventListener('submit',function(e){
   e.preventDefault();
   var n=encodeURIComponent(this.nombre.value),emp=encodeURIComponent(this.empresa.value),
