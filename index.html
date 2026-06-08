@@ -106,6 +106,11 @@ header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:bl
 .shot-card .cap p{font-size:.88rem;color:var(--muted)}
 .shot-card.wide{grid-column:1/-1}
 .shots-sub{margin:42px 0 22px;text-align:center;font-family:var(--ft);font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:.5px}
+.movil-row{display:flex;gap:26px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+.movil-phone{text-align:center;max-width:260px}
+.movil-phone img{height:520px;width:auto;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow-s);margin:0 auto}
+.movil-phone span{display:block;margin-top:12px;font-size:.9rem;color:var(--muted);font-weight:600}
+@media(max-width:600px){.movil-phone img{height:420px}}
 
 /* COMO FUNCIONA */
 .how{background:linear-gradient(180deg,var(--soft),var(--bg))}
@@ -254,7 +259,7 @@ footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
       </div>
     </div>
     <div class="hero-shot">
-      <img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.12.37.jpeg" alt="Dashboard de BottMill en tiempo real"/>
+      <img src="assets/capturas/pc-dashboard.jpeg" alt="Dashboard de BottMill en tiempo real"/>
     </div>
   </div>
 </section>
@@ -319,17 +324,24 @@ footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
     <h2 class="section-title">Así se ve por dentro</h2>
     <p class="section-sub">Capturas reales de la plataforma BottMill en funcionamiento.</p>
     <div class="shots-grid">
-      <div class="shot-card wide"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.12.37.jpeg" alt="Dashboard"/><div class="cap"><h4>Dashboard en tiempo real</h4><p>Producción acumulada del día, KPIs por métrica, objetivo y zona de stock.</p></div></div>
-      <div class="shot-card"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.13.10.jpeg" alt="Chat con IA"/><div class="cap"><h4>Chat con IA + Soporte Bitt</h4><p>Pregunta en lenguaje natural y contacta con Bitt desde el mismo chat.</p></div></div>
-      <div class="shot-card"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.14.01.jpeg" alt="Alertas"/><div class="cap"><h4>Alertas</h4><p>Avisos de objetivo completado, con la hora exacta y filtrables por tipo.</p></div></div>
-      <div class="shot-card"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.15.52.jpeg" alt="Histórico"/><div class="cap"><h4>Histórico</h4><p>Filtros de fecha, gráficas de evolución y detalle por turno.</p></div></div>
-      <div class="shot-card"><img src="assets/capturas/WhatsApp%20Image%202026-06-06%20at%2018.15.52%20(1).jpeg" alt="Informes"/><div class="cap"><h4>Informes PDF</h4><p>Mensuales y quincenales, listos para descargar y por email.</p></div></div>
+      <div class="shot-card wide"><img src="assets/capturas/pc-dashboard.jpeg" alt="Dashboard en tiempo real"/><div class="cap"><h4>Dashboard en tiempo real</h4><p>Producción acumulada del día, KPIs por métrica, objetivo y zona de stock.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/pc-chat.jpeg" alt="Chat con IA"/><div class="cap"><h4>Chat con IA + Soporte Bitt</h4><p>Pregunta en lenguaje natural y contacta con Bitt desde el mismo chat.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/pc-objetivos.jpeg" alt="Objetivos del día"/><div class="cap"><h4>Objetivos del día</h4><p>Meta por métrica (m³, núcleos, costeros) con barra de progreso y stock.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/pc-hora.jpeg" alt="Producción por hora"/><div class="cap"><h4>Producción por hora + registro</h4><p>Curva de producción por hora y últimas piezas escaneadas con sus medidas.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/pc-informes.jpeg" alt="Informes"/><div class="cap"><h4>Informes PDF</h4><p>Mensuales y quincenales, listos para descargar y por email.</p></div></div>
+    </div>
+
+    <div class="shots-sub">En el móvil, en tu bolsillo</div>
+    <div class="movil-row">
+      <div class="movil-phone"><img src="assets/capturas/movil-dashboard.jpeg" alt="Dashboard en el móvil"/><span>Dashboard en tiempo real</span></div>
+      <div class="movil-phone"><img src="assets/capturas/movil-chat.jpeg" alt="Chat con IA en el móvil"/><span>Chat con IA</span></div>
+      <div class="movil-phone"><img src="assets/capturas/movil-informes.jpeg" alt="Informes en el móvil"/><span>Informes PDF</span></div>
     </div>
 
     <div class="shots-sub">El informe PDF que recibes cada mes</div>
     <div class="shots-grid">
-      <div class="shot-card"><img src="assets/capturas/informe%201.jpeg" alt="Informe PDF página 1"/><div class="cap"><h4>Resumen ejecutivo + producción diaria</h4><p>KPIs del mes, comparativa con el periodo anterior y gráfica diaria.</p></div></div>
-      <div class="shot-card"><img src="assets/capturas/informe%202.jpeg" alt="Informe PDF página 2"/><div class="cap"><h4>Desglose y conclusiones</h4><p>Reparto por tipo de pieza, resumen semanal, alertas y conclusiones automáticas.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/informe-1.jpeg" alt="Informe PDF · resumen ejecutivo"/><div class="cap"><h4>Resumen ejecutivo + producción diaria</h4><p>KPIs del mes, comparativa con el periodo anterior y gráfica diaria con objetivo.</p></div></div>
+      <div class="shot-card"><img src="assets/capturas/informe-2.jpeg" alt="Informe PDF · desglose y conclusiones"/><div class="cap"><h4>Desglose y conclusiones</h4><p>Reparto por tipo de pieza, resumen semanal, alertas y conclusiones automáticas.</p></div></div>
     </div>
   </div>
 </section>
