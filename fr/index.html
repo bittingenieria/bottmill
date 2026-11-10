@@ -231,6 +231,22 @@ footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
   .nav .left .wm{font-size:1.45rem}.nav .links{gap:6px}
   .trust-in{gap:16px}
 }
+/* selector de idioma (visible en móvil) */
+.nav .links{margin-left:auto}
+.lang-sw{display:flex;align-items:center;gap:2px}
+.lang-sw a{font-weight:700;font-size:.85rem;color:var(--ink);padding:8px 9px;border-radius:8px;letter-spacing:.03em}
+.lang-sw a:hover{color:var(--green-d)}
+@media(max-width:600px){
+  .nav{flex-wrap:wrap;row-gap:2px}
+  .nav .links .btn-primary{white-space:nowrap;padding:9px 12px;font-size:.85rem}
+  .lang-sw{order:3;flex-basis:100%;justify-content:flex-end;margin-top:-4px}
+  .lang-sw a{padding:4px 8px;font-size:.78rem}
+}
+@media(max-width:400px){ /* móviles estrechos */
+  .nav .left{gap:9px}
+  .nav .left .wm{font-size:1.3rem}
+  .nav .links .btn-primary{padding:9px 10px;font-size:.8rem}
+}
 </style>
 </head>
 <body>
@@ -245,9 +261,11 @@ footer .yr{font-style:italic;color:#8a928c;margin-top:6px}
     <div class="links">
       <a href="#features" class="btn btn-ghost btn-sm">Fonctionnalités</a>
       <a href="#planes" class="btn btn-ghost btn-sm">Formules</a>
-      <a href="../" class="btn btn-ghost btn-sm" hreflang="es" lang="es" title="Versión en español">ES</a>
-      <a href="../en/" class="btn btn-ghost btn-sm" hreflang="en" lang="en" title="English version">EN</a>
       <a href="#demo" class="btn btn-primary btn-sm">Demander une démo</a>
+    </div>
+    <div class="lang-sw" role="navigation" aria-label="Language">
+      <a href="../" hreflang="es" lang="es" title="Versión en español">ES</a>
+      <a href="../en/" hreflang="en" lang="en" title="English version">EN</a>
     </div>
   </div>
 </header>
